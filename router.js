@@ -2,7 +2,7 @@ const fs = require('fs');
 module.exports.route = function route(request, response) {
     const object = new URL(request.url, 'http://' + request.headers.host);
     let ref = 'pages' + object.pathname;
-    if (ref === 'pages/index' || ref=== 'pages/') {
+    if (ref === 'pages/index' || ref === 'pages/') {
         ref = 'pages/index.html';
     }
     fs.stat(ref, fail => {
