@@ -21,9 +21,13 @@ module.exports.route = function route(request, response) {
                 response.writeHead(200, { 'Content-Type': type });
                 response.end(content);
             } else {
-                response.writeHead(404, { 'Content-Type': 'html' });
-                response.end('pages/error');
+                ref = 'pages/error.html';
+                fs.readFile(ref,function(err,content) {
+                    response.writeHead(404, { 'Content-Type': 'html' });
+                    response.end(content);
+                })
             }
-        })
+        });
     });
+    
 }
