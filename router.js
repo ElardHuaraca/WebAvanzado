@@ -2,7 +2,7 @@ const fs = require('fs');
 module.exports.route = function route(request, response) {
     const object = new URL(request.url, 'http://' + request.headers.host);
     let ref = 'pages' + object.pathname;
-    if (ref == 'pages/index') {
+    if (ref === 'pages/index' || ref=== 'pages/') {
         ref = 'pages/index.html';
     }
     fs.stat(ref, fail => {
@@ -15,8 +15,7 @@ module.exports.route = function route(request, response) {
                         type = 'text/' + extencion[2];
                         break;
                     default:
-                        type = 'text/html';
-
+                        type = 'text/'+extencion[1];
                         break;
                 }
                 response.writeHead(200, { 'Content-Type': type });
