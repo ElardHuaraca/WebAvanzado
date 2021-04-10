@@ -15,7 +15,7 @@ module.exports.route = function route(request, response) {
                         type = 'text/' + extencion[2];
                         break;
                     default:
-                        type = 'text/'+extencion[1];
+                        type = 'text/' + extencion[1];
                         break;
                 }
                 response.writeHead(200, { 'Content-Type': type });
