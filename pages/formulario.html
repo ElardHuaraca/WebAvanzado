@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<head>
+  <title>Inicio</title>
+  <link rel="stylesheet" href="/data_lib/bootstrap.min.css">
+  <link href="/css/styles.css" rel="stylesheet">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="/index.html">Soft-Mark</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span
+          class="navbar-toggler-icon"></span> </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/index.html" id="bienvenidos">Bienvenido</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/nosotros.html" id="nosotros">Nosotros</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/servicios.html" id="servicios">Servicios que ofecemos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/formulario.html" id="formulario">Formulario de Contacto</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <br><br>
+  <h3 style="font-family: 'Courier New', Courier, monospace; text-align: center" >Formulario</h3>
+  <br>
+
+  <form class="row g-3 container-fluid">
+    <div class="col-md-6">
+      <label for="inputnombre" class="form-label">Nombre</label>
+      <input type="text" class="form-control" id="inputnombre">
+    </div>
+    <div class="col-md-6">
+      <label for="inputapellido" class="form-label">Apellido</label>
+      <input type="text" class="form-control" id="inputapellido">
+    </div>
+    <div class="col-12">
+      <label for="inputcorreo" class="form-label">Correo</label>
+      <input type="email" class="form-control" id="inputcorreo" placeholder="test@example.com">
+    </div>
+    <div class="col-6">
+      <label for="inputcelular" class="form-label">Telefono Movil</label>
+      <input type="number" maxlength="9" class="form-control" id="inputcelular" 
+      placeholder="Maximo 9 digitos" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+    </div>
+    <div class="col-6">
+        <br>
+        <label for="start">Fecha de Nacimiento:</label>
+        <input type="date" id="start" name="trip-start"
+       value="2021-04-10"
+       min="1960-01-01" max="2030-12-31">
+      </div>
+      <div class="col-12">
+        <label for="mensaje" class="form-label">Mensaje</label>
+        <textarea class="form-control" id="mensaje" maxlength="300"></textarea>
+      </div>
+    <div class="col-12">
+        <br>
+      <button type="submit" class="btn btn-primary">Enviar</button>
+    </div>
+  </form>
+
+
+  <script src="/data_lib/jquery-3.6.0.min.js"></script>
+  <script src="/data_lib/bootstrap.min.js"></script>
+</body>
+
+</html>
