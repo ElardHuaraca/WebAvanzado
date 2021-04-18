@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<head>
+  <title>Inicio</title>
+  <link rel="stylesheet" href="/data_lib/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link href="/css/styles.css" rel="stylesheet">
+</head>
+<body>
+  <br><br>
+  <h3 style="font-family: 'Courier New', Courier, monospace; text-align: center">Formulario</h3>
+  <br>
+
+  <form class="row g-3 container-fluid" method="POST" action="/confirmacion.html">
+    <div class="col-md-6">
+      <label for="inputnombre" class="form-label">Nombre</label>
+      <input type="text" class="form-control" id="inputnombre" required>
+    </div>
+    <div class="col-md-6">
+      <label for="inputapellido" class="form-label">Apellido</label>
+      <input type="text" class="form-control" id="inputapellido" required>
+    </div>
+    <div class="col-12">
+      <label for="inputcorreo" class="form-label">Correo</label>
+      <input type="email" class="form-control" id="inputcorreo" placeholder="test@example.com" required>
+    </div>
+    <div class="col-6">
+      <label for="inputcelular" class="form-label">Telefono Movil</label>
+      <input type="number" maxlength="9" class="form-control" id="inputcelular" placeholder="Maximo 9 digitos"
+        oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required>
+    </div>
+    <div class="col-6">
+      <br>
+      <label for="start">Fecha:</label>
+      <input type="date" id="start" name="trip-start" value="2021-04-17" min="2000-01-01" max="2030-12-31" required>
+    </div>
+    <div class="col-12">
+      <br>
+      <button type="submit" class="btn btn-primary">Validar</button>
+    </div>
+  </form>
+
+
+  <script src="/data_lib/jquery-3.6.0.min.js"></script>
+  <script src="/data_lib/bootstrap.min.js"></script>
+</body>
+
+</html>

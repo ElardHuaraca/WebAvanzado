@@ -1,0 +1,11 @@
+{
+  "name": "tecsup-2021-tarea-lopez-huaraca-chaca",
+  "version": "1.0.0",
+  "description": "Tarea-Lab6",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "lopez-huaraca-chaca",
+  "license": "ISC"
+}
