@@ -1,1 +1,0 @@
-#carpetas estaticas(imagenes,audio,etc)

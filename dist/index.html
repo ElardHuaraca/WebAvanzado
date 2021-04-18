@@ -1,0 +1,34 @@
+<head>
+    <title>Inicio</title>
+    <link rel="stylesheet" href="/data_lib/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link href="/css/styles.css" rel="stylesheet">
+
+    <script type="text/javascript">
+        function navidad(){
+        var today = new Date();
+        var faltante = new Date(today.getFullYear(),11,25);
+        if(today.getMonth() == 11 && today.getDate()>25){
+            faltante.setFullYear(faltante.getFullYear()+1);
+        }
+            var day = 1000*60*60*24;
+            return Math.ceil((faltante.getTime()-today.getTime())/(day))+" dias faltantes para Navidad";
+        }
+    </script>
+        
+  </head>
+  <body>
+    <br><br>
+    <h5 style="font-family: 'Courier New', Courier, monospace;">Presione los botones :)</h5>
+    <div class="col-12">
+        <a href="/formulario.html" type="submit" class="btn btn-primary" >Formulario</a>
+    <form>
+        <br>
+        <input type="button"
+        onclick="alert(navidad())"
+        value="Dias faltantes para Navidad">
+    </form>
+    </div>
+
+
+  </body>

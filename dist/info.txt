@@ -1,1 +1,0 @@
-Carpeta de código generado (cuando se usan preprocesadores)

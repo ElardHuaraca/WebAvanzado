@@ -1,1 +1,0 @@
-Son archivos binarios (ejecutables) de sus módulos de nodo.
