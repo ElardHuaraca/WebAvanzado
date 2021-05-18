@@ -11,7 +11,7 @@ export class AppComponent {
   title = 'Lab10Front';
   lista: any;
   prod: any = {
-    _id: null,
+    codigo: null,
     descripcion: null,
     precio: null
   }
@@ -28,8 +28,9 @@ export class AppComponent {
   }
 
   nuevo() {
-    this.productosServicio.nuevo(this.prod).subscribe(result => {
-      if (result == 'ok') {
+    this.productosServicio.nuevo(this.prod).subscribe((result: any) => {
+      console.log(result.affectedRows);
+      if (result.affectedRows === 1) {
         this.limpiar();
         this.recuperarTodos();
       }
@@ -37,10 +38,10 @@ export class AppComponent {
   }
 
   eliminar(codigo: any) {
-    if (!confirm("Esta seguro que desea eliminar este registro?"))
-      return;
-    this.productosServicio.eliminar(codigo).subscribe(result => {
-      if (result == 'ok') {
+    if (!confirm("Esta seguro que desea eliminar este registro?")) return;
+    this.productosServicio.eliminar(codigo).subscribe((result: any) => {
+      console.log(result);
+      if (result == 'OK') {
         this.recuperarTodos();
       }
     });
@@ -48,7 +49,8 @@ export class AppComponent {
 
   actualizar() {
     this.productosServicio.actualizar(this.prod).subscribe((result: any) => {
-      if (result.nModified == '1') {
+      console.log(result)
+      if (result.affectedRows == '1') {
         this.limpiar();
         this.recuperarTodos();
       }
@@ -56,8 +58,8 @@ export class AppComponent {
   }
 
   mostrar(codigo: any) {
-    this.productosServicio.mostrar(codigo).subscribe(result => {
-      this.prod = result
+    this.productosServicio.mostrar(codigo).subscribe((result:any) => {
+      this.prod = result[0]
     });
   }
 
@@ -66,7 +68,7 @@ export class AppComponent {
   }
   limpiar() {
     this.prod = {
-      _id: null,
+      codigo: null,
       descripcion: null,
       precio: null
     };

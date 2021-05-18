@@ -6,22 +6,22 @@ import { HttpClient } from '@angular/common/http'
 })
 
 export class ProductosService {
-  url = 'http://localhost:3000/productos/';
+  url = 'http://localhost:3000/producto/';
   constructor(private http: HttpClient) { }
 
   listar() {
-    return this.http.get(`${this.url}listar`);
+    return this.http.get(`${this.url}`);
   }
 
   nuevo(producto: Producto) {
     return this.http.post(`${this.url}`, producto);
   }
 
-  eliminar(codigo: String) {
-    return this.http.delete(`${this.url}${codigo}`);
+  eliminar(codigo: string) {
+    return this.http.delete(`${this.url}${codigo}`,{responseType: 'text'});
   }
 
-  mostrar(codigo: String) {
+  mostrar(codigo: string) {
     return this.http.get(`${this.url}mostrar/${codigo}`);
   }
 
@@ -31,6 +31,7 @@ export class ProductosService {
 }
 
 type Producto = {
-  descripcion : String,
-  precio : String
+  codigo:number
+  descripcion : string,
+  precio : string
 }

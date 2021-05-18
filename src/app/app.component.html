@@ -17,8 +17,8 @@
 </div>
 <div>
   <h1>Administración de artículos</h1>
-    <table border="1" *ngIf="hayRegistros(); else sinproductos">
-      <tr>
+    <table border="1" class="table" style="padding: 0 2rem;" *ngIf="hayRegistros(); else sinproductos">
+      <tr class="thead-dark">
         <td>Codigo</td>
         <td>Nombre</td>
         <td>Precio</td>
@@ -26,11 +26,11 @@
         <td>Seleccionar</td>
       </tr>
       <tr *ngFor="let producto of lista">
-        <td>{{producto._id}}</td>
+        <td>{{producto.codigo}}</td>
         <td>{{producto.descripcion}}</td>
         <td>{{producto.precio}}</td>
-        <td><button (click)="eliminar(producto._id)">Borrar?</button></td>
-        <td><button (click)="mostrar(producto._id)">Seleccionar</button></td>
+        <td><button (click)="eliminar(producto.codigo)">Borrar?</button></td>
+        <td><button (click)="mostrar(producto.codigo)">Seleccionar</button></td>
       </tr>
     </table>
     <ng-template #sinproductos><p>No hay productos</p></ng-template>
