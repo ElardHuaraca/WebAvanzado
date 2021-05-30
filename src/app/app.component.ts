@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ProductosService } from './services/productos.service'
-import { HttpClient } from '@angular/common/http';
+import { DomSanitizer } from '@angular/platform-browser'
 
 @Component({
   selector: 'app-root',
@@ -8,28 +8,46 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Lab10Front';
+  title = 'Lab12Front';
   lista: any;
   prod: any = {
     codigo: null,
     descripcion: null,
-    precio: null
+    precio: null,
+    imagen: null
   }
-  constructor(private productosServicio: ProductosService) { }
+
+  img: any = {
+    url: null
+  }
+
+  delete: any = [];
+
+  images: any;
+
+  getFiles(event: any) {
+    this.images = event.target.files
+  }
+
+  constructor(private productosServicio: ProductosService, private sanitizer: DomSanitizer) {
+  }
 
   ngOnInit() {
     this.recuperarTodos();
   }
 
+  photoUrl(imag: string) {
+    return this.sanitizer.bypassSecurityTrustUrl(`http://localhost:3000/images/${imag}`);
+  }
+
   recuperarTodos() {
-    this.productosServicio.listar().subscribe(result => {
+    this.productosServicio.listar().subscribe((result: any) => {
       this.lista = result;
     });
   }
 
   nuevo() {
-    this.productosServicio.nuevo(this.prod).subscribe((result: any) => {
-      console.log(result.affectedRows);
+    this.productosServicio.nuevo(this.prod, this.images).subscribe((result: any) => {
       if (result.affectedRows === 1) {
         this.limpiar();
         this.recuperarTodos();
@@ -40,16 +58,15 @@ export class AppComponent {
   eliminar(codigo: any) {
     if (!confirm("Esta seguro que desea eliminar este registro?")) return;
     this.productosServicio.eliminar(codigo).subscribe((result: any) => {
-      console.log(result);
       if (result == 'OK') {
         this.recuperarTodos();
+        this.limpiar();
       }
     });
   }
 
   actualizar() {
-    this.productosServicio.actualizar(this.prod).subscribe((result: any) => {
-      console.log(result)
+    this.productosServicio.actualizar(this.prod, this.delete, this.images).subscribe((result: any) => {
       if (result.affectedRows == '1') {
         this.limpiar();
         this.recuperarTodos();
@@ -58,14 +75,24 @@ export class AppComponent {
   }
 
   mostrar(codigo: any) {
-    this.productosServicio.mostrar(codigo).subscribe((result:any) => {
+    this.productosServicio.mostrar(codigo).subscribe((result: any) => {
       this.prod = result[0]
+      this.delete = [];
     });
+  }
+
+  agregar(img: string) {
+    if (this.delete.length > 0) {
+      this.delete[this.delete.length] = img;
+    } else {
+      this.delete[0] = img;
+    }
   }
 
   hayRegistros() {
     return true;
   }
+
   limpiar() {
     this.prod = {
       codigo: null,

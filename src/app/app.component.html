@@ -9,7 +9,7 @@
 
 <div style="text-align: center;">
   <a routerLink="/productos">Productos</a>
-  <br/>
+  <br />
   <a routerLink="/acercade">Acerca de ...</a>
   <div>
     <router-outlet></router-outlet>
@@ -17,34 +17,52 @@
 </div>
 <div>
   <h1>Administración de artículos</h1>
-    <table border="1" class="table" style="padding: 0 2rem;" *ngIf="hayRegistros(); else sinproductos">
-      <tr class="thead-dark">
-        <td>Codigo</td>
-        <td>Nombre</td>
-        <td>Precio</td>
-        <td>Borrar</td>
-        <td>Seleccionar</td>
-      </tr>
-      <tr *ngFor="let producto of lista">
-        <td>{{producto.codigo}}</td>
-        <td>{{producto.descripcion}}</td>
-        <td>{{producto.precio}}</td>
-        <td><button (click)="eliminar(producto.codigo)">Borrar?</button></td>
-        <td><button (click)="mostrar(producto.codigo)">Seleccionar</button></td>
-      </tr>
-    </table>
-    <ng-template #sinproductos><p>No hay productos</p></ng-template>
-    <div>
-      <h1>Datos</h1>
-      <p>
-        Descripcion:<input type="text" [(ngModel)]="prod.descripcion" />
-      </p>
-      <p>
-        Precio:<input type="number" [(ngModel)]="prod.precio" />
-      </p>            
-      <p><button (click)="nuevo()">Agregar</button>
-      <button (click)="actualizar()">Modificar</button></p>
+  <table border="1" class="table" style="padding: 0 2rem;" *ngIf="hayRegistros(); else sinproductos">
+    <tr class="thead-dark">
+      <td>Codigo</td>
+      <td>Nombre</td>
+      <td>Precio</td>
+      <td>Imagenes</td>
+      <td>Borrar</td>
+      <td>Seleccionar</td>
+    </tr>
+    <tr *ngFor="let producto of lista">
+      <td>{{producto.codigo}}</td>
+      <td>{{producto.descripcion}}</td>
+      <td>{{producto.precio}}</td>
+      <td *ngFor="let img of producto.imagen.split(',')" style="display: flex;">
+        <img [src]="photoUrl(img)" alt="imagenes" width="80px">
+      </td>
+      <td><button (click)="eliminar(producto.codigo)">Borrar?</button></td>
+      <td><button (click)="mostrar(producto.codigo)">Seleccionar</button></td>
+    </tr>
+  </table>
+  <ng-template #sinproductos>
+    <p>No hay productos</p>
+  </ng-template>
+  <div>
+    <h1>Datos</h1>
+    <p>
+      Descripcion:<input type="text" [(ngModel)]="prod.descripcion" />
+    </p>
+    <p>
+      Precio:<input type="number" [(ngModel)]="prod.precio" />
+    </p>
+    <input type="file" multiple (change)="getFiles($event)" />
+    <p><button (click)="nuevo()">Agregar</button>
+      <button (click)="actualizar()">Modificar</button>
+    </p>
+    <div *ngIf="prod.imagen != null else sinimagen">
+      <p style="padding-left: 1rem; font-size: 1.3rem;"><b>¿Eliminar?</b></p>
+      <div *ngFor="let img of prod.imagen.split(',')" style="margin: 1.5rem;">
+        <input type="radio" (click)="agregar(img)" style="margin: 1rem;">
+        <label><img [src]="photoUrl(img)" width="150px"></label>
+      </div>
     </div>
+    <ng-template #sinimagen>
+      <p>Sin imagenes</p>
+    </ng-template>
+  </div>
 </div>
 
 
@@ -55,4 +73,3 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
