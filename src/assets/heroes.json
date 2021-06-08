@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Batman",
+        "canFly": true,
+        "birthDay" : "07/06/1996"
+    },
+    {
+        "name": "Superman",
+        "canFly": true,
+        "birthDay" : "01/02/1988"
+    },
+    {
+        "name": "Spider Man",
+        "canFly": false,
+        "birthDay" : "03/04/2000"
+    },
+    {
+        "name": "Hulk",
+        "canFly": true,
+        "birthDay" : "01/10/1988"
+    }
+]
