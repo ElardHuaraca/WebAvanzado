@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Lab16-Front';
+
+  logout() {
+    localStorage.removeItem('auth_token');
+  }
+
+  public get logIn(): boolean {
+    return (localStorage.getItem('auth_token') !== null);
+  }
 }
